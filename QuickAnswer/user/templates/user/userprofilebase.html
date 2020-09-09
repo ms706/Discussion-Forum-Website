@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+
+<div class="row">
+	<div class="col-5" style="background-color: #c0c0c0;padding: 20px;	border-radius:75% 75% 0 0;">
+		<center>
+			{% if request.user.profile.picture %}
+		  		
+		  		<img src="{{request.user.profile.picture.url}}" alt="Profile Picture" width="230px" height="230px" class="rounded-circle shadow p-1 mb-5 bg-white rounded">
+			{% else %}
+				<img src="{% static 'images/anonymous_user.jpg'%}" alt="Profile Picture" width="230px" height="230px" class="rounded-circle shadow p-1 mb-5 bg-white rounded">
+			{% endif %}
+		<div >
+			{% if request.user.profile.about %}
+		  		<p >{{request.user.profile.about}}</p>
+			{% else %}
+				<p >Click on Edit Profile button and tell us something about you...</p>
+			{% endif %}
+		</div>
+		<p class="title">{{request.user.username}}</p>
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<a href="{% url 'user:editprofile' %}" class="btn btn-warning" width="50px"> Edit Profile </a>
+			<a href="{% url 'account:password_change' %}"" class="btn btn-warning" width="50px">Change Password</a>
+		</div>
+		</center>
+
+	</div>
+	<div class="col-7">
+		{% block edit %}
+
+		{% endblock %}
+	
+	</div>
+</div>
+</div>
+{% endblock %}

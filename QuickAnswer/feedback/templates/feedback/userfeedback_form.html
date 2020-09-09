@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="feedbackContainer">
+		<center><div class="title">Help us in improving<br>Please provide a feedback</div></center>
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+				<div class="fieldWrapper">
+				    {{ form.feedback_type.errors }}
+				    {{ form.feedback_type.label_tag }}
+				    <br>
+				    {{ form.feedback_type }}
+				</div>
+				<div class="fieldWrapper">
+				    {{ form.feedback_content.errors }}
+				    {{ form.feedback_content.label_tag }}
+				    <br>
+				    {{ form.feedback_content }}
+				</div>
+			<center><input type="submit" value="Submit" class="btn btn-secondary">	</center>		
+		</form>
+	</div>
+{% endblock%}

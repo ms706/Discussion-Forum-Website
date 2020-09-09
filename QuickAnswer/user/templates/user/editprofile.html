@@ -1,0 +1,19 @@
+{% extends 'user/userprofilebase.html' %}
+{% load bootstrap4 %}
+{% block title %}Edit Profile{% endblock %}
+{% block edit %}
+<br>	
+<div style='width: 60%;margin: 0 auto;padding-top: 2%;'>
+<center class="title">Edit Profile</center>
+<br>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   {% bootstrap_form form %}
+   <br>
+   <center>
+  <button type="submit" class="btn btn-outline-primary">Save Changes</button>
+  </center>
+</form>
+
+</div>
+{% endblock %}

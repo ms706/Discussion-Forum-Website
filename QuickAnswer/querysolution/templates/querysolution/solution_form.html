@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Comment{% endblock %}
+{% block content %}
+  <!-- <center><div class="title">Comment</div></center>
+     -->
+  <br>
+  <br>
+  <div class="container">
+    <div class="container querybox">
+      <div class="queryheader row" >
+        <span class="profilepicture col-">
+            <a href="#">  <img src="{% static 'images/anonymous_user.jpg'%}"></a>
+        </span>
+        <span class="profiledetail col-10 col-5">
+              <p class="name">{{query.user}}</p>
+              <p class="date">
+                  Posted on: {{query.created_at|date:"d M Y"}}     Category : {{query.category}}
+              </p>
+        </span>        
+      </div>
+      <div class="querybody" >
+        <b>{{query.query_title}}</b>
+        <p>{{query.query_text}}</p>
+      </div>
+    </div>
+    <form class="post-form" method="POST">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="queryTextBox">
+          {{ form.solution_text.errors }}
+          <br>
+          {{ form.solution_text }}
+      </div>
+      <br>
+      <br>
+      <div class="queryfoot" >
+        <button type="submit" class="save btn btn-primary" name="button">Post Comment</button>  
+      </div>
+    </form>
+
+  </div>
+{% endblock %}
